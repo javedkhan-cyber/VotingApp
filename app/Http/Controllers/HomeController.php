@@ -30,7 +30,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {   
 
-        $users = Biodata::where('email','!=',Auth::user()->email)->get(); 
+        $users = User::where('email','!=',Auth::user()->email)->get(); 
         //dd($users,$users[0]->nomination);  
         return view('home',compact('users'));  
 
@@ -46,8 +46,9 @@ class HomeController extends Controller
     else {
              for($i=0; $i < count($request->user_id);$i++){
              $idOfVoter = Auth::user()->id;
+             $nameOfVoter = Auth::user()->name;
              $uid = $request->user_id[$i];
-             $user = ['nominee_id'=>$uid,'voter_id'=>$idOfVoter,'created_at'=>date('yy-m-d:h:m:s'),'updated_at'=>date('yy-m-d:h:m:s')];
+             $user = ['nominee_id'=>$uid,'voter_id'=>$idOfVoter,'v_name'=> $nameOfVoter,'created_at'=>date('yy-m-d:h:m:s'),'updated_at'=>date('yy-m-d:h:m:s')];
              DB::table('votes')->insert($user);
              }
              return redirect()->route('home')->with('success','Your Vote is valuable for us!');
@@ -59,4 +60,7 @@ class HomeController extends Controller
 
 
     }
+     public function refreshCaptcha(){
+        return response()->json(['captcha' => captcha_img()]);
+     }
 }

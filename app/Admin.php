@@ -6,27 +6,21 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class Admin extends Authenticatable
 {
     use Notifiable;
-
+    protected $guard = 'admin';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $table = 'users';
+
     protected $fillable = [
-        'name','lname','mobile' ,'email', 'password','role',
+        'name','email', 'password',
     ];
      
-     // public function voter(){
-
-     //    return $this->hasOneThrough('App\User');
-     // }
-     function nomination(){
-        return $this->hasMany('App\nomination','user_id','id');
-     }
+     
     /**
      * The attributes that should be hidden for arrays.
      *

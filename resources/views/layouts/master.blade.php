@@ -46,13 +46,13 @@
       <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
           <li>
-            <a href="#">
+            <a href="/adminDashboard">
               <i class="now-ui-icons design_app"></i>
               <p>Dashboard</p>
             </a>
           </li>
           <li class="active ">
-            <a href="/admin">
+            <a href="/adminlogin">
               <i class="now-ui-icons design_bullet-list-67"></i>
               <p>Login Users</p>
             </a>
@@ -70,12 +70,7 @@
               <p>Nominated</p>
             </a>
           </li>
-             <li class="active">
-            <a href="/biodata">
-              <i class="now-ui-icons design_bullet-list-67"></i>
-              <p>Add Role</p>
-            </a>
-          </li>
+             
            <li class="active">
             <a href="/voting-list">
               <i class="now-ui-icons design_bullet-list-67"></i>

@@ -9,9 +9,9 @@ class nomination extends Model
     protected $fillable = ['user_id','nomination_month','nominated_for'];
     protected $table= 'nominations';
 
-    public function Biodata()
+    public function User()
     {
-    	return $this->belongsTo('App\Biodata','user_id','id');
+    	return $this->belongsTo('App\User','user_id','id');
 
     }
  }

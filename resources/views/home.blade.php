@@ -4,7 +4,7 @@
 <div class="container col-md-12" style="background-color: #1affc2">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card">
+           
                   <div class="card-header" style="background-color: #99ccff">
                          <h2> Vote for Nominations</h2>
                    </div>
@@ -21,7 +21,7 @@
                         </div>
                         @endif
                     </div>
-            </div>
+           
                 <form action="{{route('voteForNominated')}}" method="post" >
                   @csrf
                   @foreach($users as $user)
@@ -42,16 +42,18 @@
                           <hr>
                       @endif
                     </div> -->
+                     @if(isset($user->nomination[0]))
                     <div class="card" style="width: 25rem; float: left;margin-top:10px;margin-left: 17px">
-                       @if(isset($user->nomination[0]))
+                      
                        <div class="card-body " style="hover">
-                          <h5 class="card-title"> {{ $user->fname}} {{$user->lname}}</h5>
+                          <h5 class="card-title"> {{ $user->name}} {{$user->lname}}</h5>
                            <h6 class="card-subtitle mb-2 text-muted">Nominated For : {{ $user->nomination[0]->nominated_for}}</h6>
                             <p class="card-text">Nomination Month : {{ $user->nomination[0]->nomination_month}}.</p>
                               <input type="checkbox"  class="checkb" id="favorite[ $user->nomination[0]->user_id]" name="user_id[]"  value="{{ $user->nomination[0]->user_id }}" style="margin-left: 20rem; margin-top:-10px;">
                            </div>
-                          @endif  
+                          
                        </div>
+                        @endif 
                  @endforeach
                  <button style="margin-top: 10px; margin-left: 20px;" id="submit" type="submit" class="btn btn-primary" disabled='disabled' />{{ __('Submit') }}</button>
                   </form>

@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -66,9 +65,6 @@
                                 @enderror
                             </div>
                         </div>
-
-                      
-
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
@@ -82,14 +78,32 @@
                                 @enderror
                             </div>
                         </div>
-
                         <div class="form-group row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
+                        </div> 
+                        <div class="form-group row">
+                            <label for="captcha" class="col-md-4 col-form-label text-md-right">{{ __('captcha') }}</label>
+
+                            <div class="col-md-6">
+                                <div class="captcha">
+                                    {!! captcha_img() !!}
+                                    <button type="text" class="btn btn-success btn-refresh">Refresh</button>
+                                </div>
+                                <input id="captcha" type="text" placeholder="Enter captcha" class="form-control @error('captcha') is-invalid @enderror" name="captcha">
+
+                                @error('captcha')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                         </div>
+
+
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

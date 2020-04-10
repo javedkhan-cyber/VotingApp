@@ -1,4 +1,4 @@
-@extends('layouts.master')
+<!-- @extends('layouts.master')
 @section('title')
 @endsection
 @section('content')
@@ -96,4 +96,4 @@
           </script>
 <!-- End of JS Code -->
 
-     
+      -->

@@ -17,7 +17,7 @@ class CreateNominationsTable extends Migration
             
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('biodatas')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('nomination_month');
             $table->string('nominated_for');
             $table->timestamps();

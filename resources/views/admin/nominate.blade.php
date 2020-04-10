@@ -8,7 +8,7 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h6 class="card-title"> Nominated</h6>
+                <h6 class="card-title">Select For NOminations</h6>
               </div>
               @if ($errors->any())
       <div class="alert alert-danger">
@@ -35,23 +35,23 @@
                 <div class="table-responsive">
                   <table class="table">
                     <thead class=" text-primary"> 
-                        <th>User ID</th>
-                        <th>Full Name</th>
+                        <th width="5px">User ID</th>
+                        <th width="20px">Full Name</th>
                         <th> Role  </th>
                         <th> Email </th>
-                        <th>Months</th>
-                        <th> Nomination for </th>
+                        <th width="150px">Months</th>
+                        <th>Nomination for </th>
                     </thead>
                     <tbody>
                     @foreach($users as $user)
                   <tr>
                      <td>{{$user->id}}</td>
-                     <td>{{$user->fname}} {{$user->lname}}</td>
+                     <td>{{$user->name}} {{$user->lname}}</td>
                      <td>{{$user->role}}</td>
                      <td>{{$user->email}}</td>
                      <td>
-                       <select class="dropdown" name="month[]" id="mon" >
-                            <option value="">--Select Month--</option>
+                       <select class="form-control" name="month[]" id="mon" >
+                            <option value="">Select Month</option>
                             <option value="January">January</option>
                             <option value="February">February</option>
                             <option value="March">March </option>
@@ -67,8 +67,8 @@
                          </select>
                     </td>
                      <td>
-                       <select class="dropdown" name="nominate[]" id="nom" >
-                            <option value="">------Nominate For------</option>
+                       <select class="form-control" name="nominate[]" id="nom" >
+                            <option value="">Nominate For</option>
                             <option value="Good Performer">Good Performer</option>
                             <option value="Excellent Performer">Excellent Performer</option>
                             <option value="Employee of Month">Employee of the Month </option>                            

@@ -10,6 +10,7 @@ use App\Biodata;
 use App\nomination;
 use App\Voter;
 use\Validator;
+use PDF;
 
 class adminController extends Controller
 {
@@ -32,7 +33,7 @@ class adminController extends Controller
 
           $uid = $request->user_id[$i];
           $role = $role_arr[$i];
-          $user = Biodata::find($uid);
+          $user = User::find($uid);
           $user->role = $role;
           $user->save();
           //User::where('id',$uid)->update(['role',$role]);
@@ -42,7 +43,7 @@ class adminController extends Controller
     }
 
       public function nominated(Request $request){
-      $users = Biodata::whereNotNull('role')->get();
+      $users = User::whereNotNull('role')->get();
       return view('admin.nominate')->with('users',$users);
    }      
         public function forNominated(Request $request){
@@ -85,29 +86,61 @@ class adminController extends Controller
        
           
          }
-       public function nominatedUser(Request $request){
+        public function nominatedUser(Request $request){
         $users = nomination::whereNotNull('user_id')->get();
         return view('admin.nominated')->with('users',$users);
         	}
-
           public function votingList(Request $request){
-          // $users = voter::with(['']);
-          // // dd($users->nomination);
-          //  //dd($users,$users->nomination);  
-          // $users->nomination;
-          // $users->User;
-         $users =  DB::table('biodatas')
-         ->join('nominations','nominations.user_id','biodatas.id')
-         ->join('votes','votes.nominee_id','biodatas.id')
-         ->join('users','users.id','votes.voter_id')
-         ->select('biodatas.fname','biodatas.lname','nominations.nominated_for','users.name')
+         $users =  DB::table('users')
+         ->join('nominations','nominations.user_id','users.id')
+         ->join('votes','votes.nominee_id','users.id')
+         ->select('users.name','users.lname','nominations.nominated_for','voter_id','v_name','votes.id')
          ->get();          
        return view('admin.vote',compact('users'))->with('i');
-        
-         
-         
-
           }
 
+    public function destroy($id=0)
+    {
+      if($id > 0)
+      {
+        $users = nomination::find($id);
+        if($users->delete())
+        {
+          return redirect()->route('withRole')->with('success','Your Data deleted successfully');
+        }
+        else
+        {
+          return redirect()->route('withRole')->with('error','Unable to Delete Data');
+        }
+      }
+    }
+    public function deleteVoter($id=0)
+    {
+      if($id > 0)
+      {
+        $users = Voter::find($id);
+        if($users->delete())
+        {
+          return redirect()->route('vts')->with('success','Your Data deleted successfully');
+        }
+        else
+        {
+          return redirect()->route('withRole')->with('error','Unable to Delete Data');
+        }
+      }
+    }
 
+      public function getPDF(){
+        $users =  DB::table('users')
+         ->join('nominations','nominations.user_id','users.id')
+         ->join('votes','votes.nominee_id','users.id')
+         ->select('users.name','users.lname','nominations.nominated_for','voter_id','v_name','votes.id')
+         ->get();    
+        $pdf = PDF::loadview('pdf.customer',['users'=>$users]);
+        return $pdf->download('votes.pdf');
+      }
+   
 }
+
+
+

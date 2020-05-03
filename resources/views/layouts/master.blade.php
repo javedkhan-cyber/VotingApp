@@ -77,6 +77,12 @@
               <p>Voting List</p>
             </a>
           </li>
+           <li class="active">
+            <a href="/ContactUS">
+              <i class="now-ui-icons design_bullet-list-67"></i>
+              <p>ContactUS</p>
+            </a>
+          </li>
         </ul>
       </div>
     </div>

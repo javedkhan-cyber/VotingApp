@@ -1,3 +1,4 @@
+<!-- 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -7,9 +8,8 @@
         <title>Voting System</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+<!--         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
-        <!-- Styles -->
         <style>
             html, body {
                 background-color: #fff;
@@ -63,6 +63,7 @@
             }
         </style>
     </head>
+    @section('content')
     <body>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
@@ -87,4 +88,13 @@
                     
                
     </body>
-</html>
+  
+</html> -->
+ @extends('layouts.app')
+
+@section('content')
+            <div class="col-md-12" style="margin-top:-2rem;">
+            <img src="images/vote_front.jpg" style="width: 1400px;height: 700px; margin-top:0.5rem;margin-right:-5rem;margin-bottom:-1.5rem;margin-left:-1.5rem">
+            </div>
+        </div>
+@endsection

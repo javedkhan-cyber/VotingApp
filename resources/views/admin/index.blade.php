@@ -71,7 +71,7 @@
        @endsection
        @section('scripts')
 
-       <!-- JS code for disable/Enable button -->
+       <!-- JS code for disable/Enable button
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
           <script type="text/javascript">
@@ -96,4 +96,4 @@
           </script>
 <!-- End of JS Code -->
 
-      -->
+      --> -->

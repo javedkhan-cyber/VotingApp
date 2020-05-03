@@ -19,6 +19,7 @@ class CreateEnginesTable extends Migration
             'nominations',
             'password_resets',
             'votes',
+            'contacts',
         ];
         foreach ($tables as $table) {
             DB::statement('ALTER TABLE ' . $table . ' ENGINE = InnoDB');

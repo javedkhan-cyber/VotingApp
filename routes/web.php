@@ -19,10 +19,13 @@ Route::get('/dashboard', function () {
     return view('admin.dashboard');
 });
 
-
+Auth::routes(['verify' => true]);
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::get('/about','frontendController@aboutUs')->name('home.about');
+Route::get('/contact','frontendController@contactUs')->name('home.contact');
+Route::post('/contact-store','frontendController@contactStore')->name('home.ContactStoreDetails');
 Route::get('refresh_captcha','HomeController@refreshCaptcha')->name('refresh_captcha');
 Route::namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
  Route::get('/admin','Auth\AdminLoginController@showLoginForm')->name('admin.login');
@@ -35,6 +38,7 @@ Route::get('/admin','Auth\AdminLoginController@showLoginForm')->name('admin.logi
 Route::post('/admin/login','Auth\AdminLoginController@login')->name('admin.login.submit');
 
 Route::get('/adminlogin','Admin\DashboardController@registered')->name('employee.list')->middleware('auth:admin');
+Route::get('/ContactUS','ContactusController@index')->name('contact.list')->middleware('auth:admin');
 Route::post('/userNominee','Admin\DashboardController@userData')->name('nominate.user');
 Route::get('/nominate','Admin\adminController@nominated')->name('withRole')->middleware('auth:admin');
 Route::resource('biodata','biodataController')->middleware('auth:admin');

@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="container col-md-12" style="background-color: #1affc2">
+<div class="container col-md-12" style="background-color: #1affc2;margin-top:-1.5rem;margin-bottom:-1.5rem;">
     <div class="row justify-content-center">
         <div class="col-md-12">
            
-                  <div class="card-header" style="background-color: #99ccff">
+                  <div class="card-header" style="background-color: #99ccff; margin-top:1rem;">
                          <h2> Vote for Nominations</h2>
                    </div>
                    @if($message = Session::get('success'))
@@ -22,7 +22,7 @@
                         @endif
                     </div>
            
-                <form action="{{route('voteForNominated')}}" method="post" >
+                <form action="{{route('voteForNominated')}}" method="post" style="margin-bottom:7.5rem;" >
                   @csrf
                   @foreach($users as $user)
                    <!--  <div class="col-md-4 " style="float: left; padding-top: 20px">  
@@ -59,7 +59,7 @@
                   </form>
           </div>
          </div>
-         <div style="background-color: black; margin-top: 20px;"><h4 style="text-align:center;color: white;">@copyright Hipster</h4></div>
+        
 </div>
  @endsection
 
